@@ -5,7 +5,8 @@ import {
     start,
 } from "./Carousel.js";
 
-// import axios from "axios";
+import axios from "axios";
+
 
 // The breed selection input element.
 const breedSelect = document.getElementById("breedSelect");
@@ -48,11 +49,13 @@ initialLoad();
 
 async function initialLoad() {
     try {
-        const response = await fetch(
-            "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=5",
-            requestOptions
-        );
+        // const response = await fetch(
+        //     "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=5",
+        //     requestOptions
+        // );
 
+        const response = await axios("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=5")
+        console.log(response)
         if (!response.ok) {
             throw `Response status: ${response.status}`;
         }
@@ -141,6 +144,7 @@ async function carouselChange(id) {
  *   by setting a default header with your API key so that you do not have to
  *   send it manually with all of your requests! You can also set a default base URL!
  */
+
 
 
 /**
