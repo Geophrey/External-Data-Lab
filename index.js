@@ -5,7 +5,7 @@ import {
     start,
 } from "./Carousel.js";
 
-import axios from "axios";
+// import axios from "axios";
 
 
 // The breed selection input element.
@@ -128,8 +128,6 @@ async function carouselChange(id) {
         console.log(error);
     }
 }
-
-//test 
 
 /**
  * 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
