@@ -67,6 +67,8 @@ async function initialLoad() {
             option.textContent = element.breeds[0].name;
         });
 
+        carouselChange(breedSelect.value);
+
         console.log(breedSelect);
     } catch (error) {
         console.log(error);
@@ -87,26 +89,42 @@ async function initialLoad() {
  * - Add a call to this function to the end of your initialLoad function above to create the initial carousel.
  */
 
-breedSelect.addEventListener("change", async (e) => {
+breedSelect.addEventListener("change", (e) => {
     if (e.target === e.currentTarget) {
-        try {
-            const response = await fetch(
-                `https://api.thecatapi.com/v1/images/search?breed_ids=${e.target.value}&limit=10`,
-                requestOptions
-            );
-
-            if (!response.ok) {
-                throw `Response status: ${response.status}`;
-            }
-            const result = await response.json();
-            console.log(result);
-
-            console.log(breedSelect);
-        } catch (error) {
-            console.log(error);
-        }
+        carouselChange(e.target.value);
     }
 });
+
+async function carouselChange(id) {
+    try {
+        const response = await fetch(
+            `https://api.thecatapi.com/v1/images/search?breed_ids=${id}&limit=10`,
+            requestOptions
+        );
+
+        if (!response.ok) {
+            throw `Response status: ${response.status}`;
+        }
+        const result = await response.json();
+        console.log(result);
+        clear();
+        result.forEach((element) => {
+            appendCarousel(
+                createCarouselItem(
+                    element.url,
+                    element.breeds[0].name,
+                    element.id
+                )
+            );
+        });
+
+        start();
+
+        console.log(breedSelect);
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 /**
  * 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
