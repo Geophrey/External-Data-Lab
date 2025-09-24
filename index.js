@@ -59,7 +59,7 @@ async function initialLoad() {
         const result = await response.json();
         console.log(result);
 
-        await result.forEach((element) => {
+        result.forEach((element) => {
             const option = breedSelect.appendChild(
                 document.createElement("option")
             );
@@ -126,9 +126,12 @@ async function carouselChange(id) {
     }
 }
 
+//test 
+
 /**
  * 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
  */
+
 /**
  * 4. Change all of your fetch() functions to axios!
  * - axios has already been imported for you within index.js.
@@ -138,6 +141,8 @@ async function carouselChange(id) {
  *   by setting a default header with your API key so that you do not have to
  *   send it manually with all of your requests! You can also set a default base URL!
  */
+
+
 /**
  * 5. Add axios interceptors to log the time between request and response to the console.
  * - Hint: you already have access to code that does this!
